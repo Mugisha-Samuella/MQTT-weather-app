@@ -1,29 +1,29 @@
 # MQTT Weather Data Storage & Visualization
 
-This application collects temperature and humidity data from an MQTT broker, stores it in an SQLite database, and visualizes the data in real-time with 5-minute averaging.
+This project is designed to collect temperature and humidity data from an MQTT broker, store it in an SQLite database, and provide real-time visualization with 5-minute averaging.
 
 ## Features
 
-- Real-time data collection from MQTT broker
-- Data storage in SQLite database
+- Live data collection from an MQTT broker
+- Storage of data in an SQLite database
 - Real-time visualization of temperature and humidity
-- 5-minute averaging of temperature and humidity data
-- Historical data viewing with customizable time ranges
-- Responsive design that works on desktop and mobile
+- Automatic 5-minute averaging of sensor data
+- Historical data access with customizable time ranges
+- Fully responsive design for both desktop and mobile devices
 
 ## Technical Architecture
 
 ### Backend
-- Node.js with Express
-- MQTT client for data collection
-- SQLite for data storage
-- Socket.io for real-time data updates to the frontend
+- Built with Node.js and Express
+- Uses an MQTT client to gather data
+- SQLite for database storage
+- Socket.io for real-time data updates
 
 ### Frontend
-- HTML/CSS/JavaScript
-- Chart.js for data visualization
+- HTML, CSS, and JavaScript
+- Chart.js for interactive data visualization
 - Socket.io client for real-time updates
-- Responsive design
+- Responsive UI for optimal user experience
 
 ## Installation
 
@@ -34,72 +34,73 @@ This application collects temperature and humidity data from an MQTT broker, sto
 ### Setup
 
 1. Clone the repository:
-```
-git clone https://github.com/yourusername/mqtt-weather-app.git
-cd mqtt-weather-app
-```
+   ```sh
+   git clone https://github.com/Mugisha-Samuella/mqtt-weather-app.git
+   cd mqtt-weather-app
+   ```
 
 2. Install dependencies:
-```
-npm install
-```
+   ```sh
+   npm install
+   ```
 
 3. Start the application:
-```
-npm start
-```
+   ```sh
+   npm start
+   ```
 
-4. Access the dashboard at `http://localhost:3000`
+4. Open `http://localhost:3000` to view the dashboard.
 
 ## Database Structure
 
-The application uses an SQLite database with the following tables:
+The project uses an SQLite database with these tables:
 
 ### weather_data
-Stores raw MQTT data:
-- id: Primary key
-- topic: MQTT topic
-- value: Numeric value
-- timestamp: Time when the data was received
+Stores raw MQTT sensor data:
+- `id`: Primary key
+- `topic`: MQTT topic
+- `value`: Numeric value
+- `timestamp`: Time of data reception
 
 ### weather_averages
-Stores 5-minute averages:
-- id: Primary key
-- temperature: Average temperature
-- humidity: Average humidity
-- timestamp: Time when the average was calculated
+Stores processed 5-minute average values:
+- `id`: Primary key
+- `temperature`: Average temperature
+- `humidity`: Average humidity
+- `timestamp`: Time of calculation
 
 ## MQTT Configuration
 
 The application connects to an MQTT broker at `ws://157.173.101.159:9001` and subscribes to:
-- `/work_group_01/room_temp/temperature` for temperature data
-- `/work_group_01/room_temp/humidity` for humidity data
+- `/work_group_01/room_temp/temperature` (temperature readings)
+- `/work_group_01/room_temp/humidity` (humidity readings)
 
 ## API Endpoints
 
-- `GET /api/latest`: Returns the latest temperature and humidity values
-- `GET /api/history?hours=24`: Returns historical 5-minute averages for the specified number of hours
+- `GET /api/latest` - Retrieves the most recent temperature and humidity values.
+- `GET /api/history?hours=24` - Fetches historical 5-minute average data for a specified time range.
 
 ## Development
 
-For development with auto-restart on file changes:
-```
+For development mode with automatic restarts on file changes:
+```sh
 npm run dev
 ```
 
 ## Customization
 
 ### Changing MQTT Broker
-To connect to a different MQTT broker, modify the connection URL in `app.js`:
+To connect to a different MQTT broker, update the connection URL in `app.js`:
 ```javascript
 const mqttClient = mqtt.connect('ws://your-broker-url:port');
 ```
 
-### Modifying Chart Settings
-Chart settings can be adjusted in the `index.html` file within the chart configuration objects.
+### Adjusting Chart Settings
+Modify the chart configurations in `index.html` to customize data visualization.
 
 ## License
 MIT
 
 ## Author
-Elvin HUMURA
+Samuella Mugisha
+
